@@ -19,7 +19,6 @@ public class Demo01SparseArray {
             }
             System.out.println();
         }
-
         int [][] sparseArray=arrayToSparseArray(chessArray);
         sparseArrayToArray(sparseArray);
     }
@@ -93,6 +92,4 @@ public class Demo01SparseArray {
             System.out.println();
         }
     }
-
-
 }
