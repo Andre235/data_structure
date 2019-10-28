@@ -1,6 +1,7 @@
 package com.demo03LinkedList.singleLinkedList;
 
-import org.w3c.dom.html.HTMLTableRowElement;
+
+import java.util.Stack;
 
 /**
  * @author : 赵静超
@@ -11,6 +12,10 @@ public class SingleLinkedList {
 
     //先定义一个头结点，头结点不动，不存放任何数据
     private HeroNode head = new HeroNode(0,"","");
+
+    public HeroNode getHead() {
+        return head;
+    }
 
     /**
      * 添加节点到单链表中
@@ -127,9 +132,92 @@ public class SingleLinkedList {
     }
 
     /**
+     * @return 获取链表有效节点(不含头结点)的个数
+     */
+    int getLength(){
+        if(head.next == null){  //链表为空
+            return 0;
+        }
+        int length = 0;
+        HeroNode temp = head.next;
+        while(temp != null){
+            length++;
+            temp = temp.next;
+        }
+        return length;
+    }
+
+    /**
+     * [新浪面试题]
+     * @param index 获取链表倒数第K个节点信息
+     * @return 倒数第K个节点信息
+     */
+    HeroNode getInfoByIndex(int index) throws IllegalArgumentException {
+        //获取链表的有效长度(不包含头结点)
+        int length = getLength();
+        if(index <= 0 || index > length){
+            throw new IllegalArgumentException("非法参数！");
+        }
+        int actualIndex  = length - index;
+        HeroNode temp =  head.next;
+        for (int i = 0; i < actualIndex; i++) {
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+    /**
+     * 反转链表 [腾讯面试题] 难度中等
+     * 1、先创建一个reverseHeadNode 反转头结点
+     * 2、遍历之前的链表，将其取出放到reverse链表的最前端
+     */
+    void reverseList(){
+        //如果链表为空，或者只有一个节点则无需反转，直接返回
+        if(head.next == null || head.next.next == null){
+            return;
+        }
+        //定义一个临时节点，辅助遍历临时链表
+        HeroNode cur = head.next;
+        //指向当前节点cur的下一个节点
+        HeroNode nextNode = null;
+        //定义一个反转节点的头结点
+        HeroNode reverseHead = new HeroNode(0,"","");
+        while(cur != null){
+            nextNode = cur.next; //先暂时保存当前节点的下一个节点
+            cur.next = reverseHead.next; //让cur的下一个节点指向反转节点的最前端
+            reverseHead.next = cur;
+            cur = nextNode; //cur后移
+        }
+        head.next  = reverseHead.next;
+    }
+
+    /**
+     * [百度面试题目] 逆序输出节点信息
+     * 思路：利用Stack数据结构的先进后出的特性，实现逆序输出操作
+     */
+    void reversePrint(){
+        //判断链表是否为空
+        if(head.next == null){
+            return;
+        }
+        //创建一个栈对象，利用先进后出原理实现逆序打印
+        Stack<HeroNode> stack = new Stack<>();
+        HeroNode temp = head.next;
+        //压栈
+        while (temp != null){
+            stack.push(temp);
+            temp = temp.next;
+        }
+        //出栈，逆序打印
+        while(stack.size() > 0){
+            System.out.println(stack.pop());
+        }
+    }
+
+    /**
      * 获取链表内所有节点信息(遍历)
      */
-    public void getList(){
+    void getList(){
         //判断链表是否为空
         if(head.next==null){
             System.out.println("链表为空！");
