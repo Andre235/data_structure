@@ -4,6 +4,7 @@ package com.demo03LinkedList.DoubleLinkedList;
  * @author : zhaojingchao
  * @date : 2019/10/28
  */
+@SuppressWarnings("all")
 public class DoubleLinkedList {
 
     //先定义一个头结点，头结点不动，不存放任何数据
