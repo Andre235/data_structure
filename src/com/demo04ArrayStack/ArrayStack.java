@@ -14,7 +14,7 @@ public class ArrayStack {
     private int[] stack;
 
     //模拟栈顶操作，默认top = -1
-    private int top;
+    private int top = -1;
 
     //构造器
     public ArrayStack(int size){
@@ -39,9 +39,9 @@ public class ArrayStack {
     /**
      * @param value 入栈
      */
-    public void push(int value){
+    public void push(int value) throws Exception {
         if(isFull()){
-            return;
+            throw new Exception("当前栈空间已满！");
         }
         top++;
         stack[top] = value;
@@ -69,7 +69,7 @@ public class ArrayStack {
             return;
         }
         for (int i = top; i >= 0; i--) {
-            System.out.printf("stack[{}]：{}",i,stack[i]);
+            System.out.printf("stack[%d]=%d\n",i,stack[i]);
         }
     }
 
