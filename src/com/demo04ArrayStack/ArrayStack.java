@@ -8,13 +8,16 @@ package com.demo04ArrayStack;
 public class ArrayStack {
 
     //用数组模拟栈，基本元素就存在数组中
-    private int maxSize;
+    int maxSize;
 
     //用数组模拟栈，基本元素就存在数组中
-    private int[] stack;
+    int[] stack;
 
     //模拟栈顶操作，默认top = -1
-    private int top = -1;
+    int top = -1;
+
+    public ArrayStack() {
+    }
 
     //构造器
     public ArrayStack(int size){
@@ -27,6 +30,13 @@ public class ArrayStack {
      */
     public boolean isFull(){
         return top == maxSize-1;
+    }
+
+    /**
+     * @return 不是pop，仅仅是查看当前栈顶的元素
+     */
+    public int peek(){
+        return stack[top];
     }
 
     /**
