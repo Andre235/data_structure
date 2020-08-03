@@ -10,6 +10,9 @@ public class DoubleLinkedListDemo {
         HeroNode hero2 = new HeroNode(2, "马化腾", "腾讯公司");
         HeroNode hero3 = new HeroNode(3, "李彦宏", "百度公司");
         HeroNode hero4 = new HeroNode(4, "刘强东", "京东公司");
+        HeroNode hero5 = new HeroNode();
+
+        System.out.println(hero5.getName());
         DoubleLinkedList doubleLinkedList = new DoubleLinkedList();
 
         doubleLinkedList.add(hero1);
